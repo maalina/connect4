@@ -8,6 +8,7 @@
 #oops/undo button?
 #if name == main block: how to do user input though...
 
+
 import random
 from sys import exit #how do i properly exit this thing....
 
