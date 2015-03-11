@@ -1,0 +1,12 @@
+git init 
+git remote add origin https://github.com/maalina/a.git
+git add *
+git commit -m "initial commit"
+git push -u origin master
+#enter password and stuff
+
+=== For future commits ===
+git add *
+git commit -m "look another commit"
+git push
+#enter password and stuff

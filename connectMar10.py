@@ -13,6 +13,7 @@ import time
 from sys import exit #how do i properly exit this thing....
 
 def set_up():
+        #print (\033[31;1mError:\033[0m "some message")
         input_1 = input("What is your name?\n")
         input_2 = input("What is your name?\n")
         print("Let's see who goes first! One moment please...\n") #cool1
@@ -65,25 +66,36 @@ def print_board(pieces):
 def position(sym, pieces):
         goof_count = 0
         col = input("Pick a column to drop your piece.\n")
-        while (col < 0) or (col > 4):
-                print("You goofed. Try again")
-                goof_count += 1
-                col = int(input("Pick a column to drop your piece.\n"))
-                if goof_count == 3:
-                        print("Please, let's stick to the game...")
-                if goof_count > 5:
-                        print("Let's stop this now, shall we?\n")
-                        exit(0) #exit quietly without that Tracebook, etc????
-        i = 4
-        while i >= 0:
-                if pieces[i][col] == " ":
-                        pieces[i][col] = sym
-                        return pieces
-                else:
-                        i -= 1
-        if i < 0:
-                print ("No space in this column. Please pick another column.")
-        #how to get them to try again???
+        if col.lower() == "undo":
+                undo_move()
+        else:
+                col = int(col)
+                while (col < 0) or (col > 4):
+                        print("You goofed. Try again")
+                        goof_count += 1
+                        col = int(input("Pick a column to drop your piece.\n"))
+                        if goof_count == 3:
+                                print("Please, let's stick to the game...")
+                        if goof_count > 5:
+                                print("Let's stop this now, shall we?\n")
+                                exit(0) #exit quietly without that Tracebook, etc????
+                i = 4
+                while i >= 0:
+                        if pieces[i][col] == " ":
+                                pieces[i][col] = sym
+                                return pieces
+                        else:
+                                i -= 1
+                if i < 0:
+                        print ("No space in this column. Please pick another column.")
+                #how to get them to try again???
+        
+def undo_move():
+        
+        
+        
+        
+        pass
 
 #building the list of list piece placements
 def board_pieces():
@@ -165,7 +177,7 @@ def diag_wins(pieces):
                                 
 #play again?
 def play_again():
-        val = (input("Do you wish to play again?\n")).lower
+        val = (input("Do you wish to play again?\n")).lower()
         goof_count = 0        
         if val == "yes":
                 play_game()
@@ -182,5 +194,6 @@ def play_again():
                         goof_count += 1
         '''
 
-#if __name__== "__main__":
-        #play_game()
+
+if __name__== "__main__":
+        play_game()
